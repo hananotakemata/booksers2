@@ -1,0 +1,34 @@
+  <p id="notice"></p>
+
+  <div class="container">
+  <div class="row">
+  <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+
+  <h1>User info</h1>
+
+  <% if @user.errors.any? %>
+  <h3><%= @user.errors.count %>errors prohibited this ojp from being saved:</h3>
+  <ul>
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+  <%end%>
+
+<%= form_with model: @user do |f| %>
+<div><label for="inputName">Name</label></div>
+  <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"name"%>
+
+<div><label for="inputImage">ProfileImage</label></div>
+  <%= f.file_field :profile_image,accept: "image/*" %>
+
+<div><label for="inputIntroduction">Introduction</label></div>
+　<%= f.text_area :introduction, autofocus: true, id: "inputIntroduction" %>
+
+<br>
+  <%= f.submit "Update User", class: 'btn btn-secondary'%>
+
+<% end %>
+</div>
+</div>
+</div>

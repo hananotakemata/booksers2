@@ -1,0 +1,46 @@
+<p id="notice"></p>
+<div class="container px-5 px-sm-0">
+ <div class = "row">
+  <div class = "col-md-3">
+  <%= render 'users/list', user: @user, book: @book_new %>
+  </div>
+
+
+
+<div class="col-md-8 offset-md-1">
+<h2>Book detail</h2>
+<%= form_with model: @book do |f| %>
+<table class = 'table'>
+ <tbody>
+     <tr>
+     <td>
+         <%= image_tag @user.get_profile_image(100,100) %>
+         <br>
+          <%= link_to user_path(@user) do %>
+          <%= @user.name %>
+          <%end%>
+     </td>
+     <td>
+         <%= link_to book_path(@book) do %>
+         <%= @book.title %>
+         <% end %>
+     </td>
+     <td><%= @book.body %></td>
+
+     <td>
+      <% if @book.user == current_user %>
+      <%= link_to 'Edit',edit_book_path(@book.id), class: 'btn btn-success' %>
+      <% end %>
+      </td>
+     <td>
+         <% if @book.user == current_user %>
+         <%= link_to 'Destroy', book_path(@book.id), method: :delete,class: 'btn btn-danger', "data-confirm" => "本当に消しますか？" %>
+         <% end %>
+     </td>
+     </tr>
+     <%end%>
+ </tbody>
+</table>
+</div>
+</div>
+</div>
